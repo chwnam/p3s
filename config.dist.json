@@ -1,0 +1,43 @@
+{
+  "version": "1.0",
+  "target": ".",
+  "projectRoot": "../../../",
+  "setup": {
+    "php": {
+      "languageLevel": "8.0",
+      "servers": [
+        "preset:wordpress{wp}"
+      ],
+      "composer": true,
+      "frameworks": {
+        "wordpress": {
+          "enabled": true,
+          "installationPath": "."
+        }
+      }
+    },
+    "appearanceAndBehavior": {
+      "scopes": true
+    },
+    "editor": {
+      "naturalLanguages": {
+        "spelling": {
+          "customDictionaries": [
+            "/path/to/your/dictionary.dic",
+            "/path/to/your/other/dictionary.dic",
+            "./custom.dic"
+          ]
+        }
+      }
+    },
+    "directories": {
+      "exclusion": "preset:wordpress"
+    },
+    "versionControl": {
+      "directoryMappings": true
+    },
+    "runDebugConfiguration": {
+      "xdebug": true
+    }
+  }
+}
