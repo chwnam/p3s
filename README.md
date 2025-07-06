@@ -135,3 +135,6 @@ IDE key 값은 `phpstorm-xdebug`로 고정되어 있습니다.
 ```
 php /path/to/saops.php
 ```
+
+PhpStorm 은 설정이 담긴 XML을 실시간으로 계속 업데이트합니다.
+따라서 IDE가 해당 프로젝트를 열고 있는 도중에 이 스크립트를 실행해도 괜찮습니다.

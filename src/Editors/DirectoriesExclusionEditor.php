@@ -35,11 +35,16 @@ readonly class DirectoriesExclusionEditor implements Editor
                 return $xml->addChild('component', '', ['name' => 'NewModuleRootManager'], true);
             })
             ->doForTarget(function (DomElement $node, FluidContext $nodes) {
+                $setup = $this->manager->getConfig()->getSetup($this->getDefaultConfigParam());
+                if ('preset:wordpress' !== $setup) {
+                    throw new Exception('Sorry, currently only preset:wordpress is supported.');
+                }
+
                 [$configContent, $configSources, $configExcludes] = $this->getConfigSetup();
                 [, $ideaSource, $ideaExcludes] = $this->getIdeaSetup();
 
                 // Find <content>
-                $contentNode = NodeHelper::queryOrGetNode($nodes, '/content');
+                $contentNode = NodeHelper::queryOrGetNode($nodes, 'content[@url="' . $configContent . '"]');
                 $contentNode[0]->setAttribute('url', $configContent);
 
                 // Add sourceFolder
@@ -55,12 +60,22 @@ readonly class DirectoriesExclusionEditor implements Editor
                 }
 
                 // Add orderEntry
-                if (0 === $nodes->query('/orderEntry[@type="inheritedJdk"]')->size()) {
+                if (0 === $nodes->query('orderEntry[@type="inheritedJdk"]')->size()) {
                     $nodes->addChild('orderEntry', '', ['type' => 'inheritedJdk']);
                 }
-                if (0 === $nodes->query('/orderEntry[@type="sourceFolder"]')->size()) {
+                if (0 === $nodes->query('orderEntry[@type="sourceFolder"]')->size()) {
                     $nodes->addChild('orderEntry', '', ['type' => 'sourceFolder', 'forTests' => 'false']);
                 }
+
+                // PHPMailer, and SimplePie are found in the WordPress
+                $nodesToDelete = [
+                    $nodes->query('sourceFolder[@url="file://$MODULE_DIR$/wp-includes"][@packagePrefix="PHPMailer"]'),
+                    $nodes->query('sourceFolder[@url="file://$MODULE_DIR$/wp-includes/SimplePie/src"][@packagePrefix="SimplePie"]'),
+                ];
+                foreach ($nodesToDelete as $nodeToDelete) {
+                    $nodeToDelete->remove();
+                }
+
             })
             ->done()
         ;
@@ -156,20 +171,20 @@ readonly class DirectoriesExclusionEditor implements Editor
         ];
 
         $xml           = $this->manager->getXml($this->getDefaultFileName());
-        $componentNode = $xml->query('/component[@name="NewModuleRootManager"]');
+        $componentNode = $xml->query('/module[@type="WEB_MODULE"]/component[@name="NewModuleRootManager"]');
 
-        $content = $componentNode->query('/content');
+        $content = $componentNode->query('content');
         if ($content->size()) {
             $output[0] = $content[0]->getAttribute('url');
 
-            $sourceFolders = $content->query('/sourceFolder');
+            $sourceFolders = $content->query('sourceFolder');
             if ($sourceFolders->size()) {
                 foreach ($sourceFolders as $sourceFolder) {
                     $output[1][] = $sourceFolder->getAttribute('url');
                 }
             }
 
-            $excludeFolders = $content->query('/excludeFolder');
+            $excludeFolders = $content->query('excludeFolder');
             if ($excludeFolders->size()) {
                 foreach ($excludeFolders as $excludeFolder) {
                     $output[2][] = $excludeFolder->getAttribute('url');

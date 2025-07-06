@@ -23,8 +23,7 @@ class NodeHelper
      */
     public static function queryOrGetNode(FluidContext $node, string $component): FluidContext
     {
-        $component = trim($component, '/');
-        $subnode   = $node->query("/$component");
+        $subnode   = $node->query($component);
 
         if (!$subnode->size()) {
             $pos = strrpos($component, '[');

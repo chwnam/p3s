@@ -38,11 +38,13 @@ readonly class VersionControlDirectoryMappingsEditor implements Editor
                 [$jsonIncludes, $jsonExcludes] = $this->getConfigSetup();
                 [$ideaIncludes, $ideaExcludes] = $this->getIdeaSetup();
 
-                // $nodes - vcs
-                // Includes - vcs
-                $diff = array_diff($jsonIncludes, $ideaIncludes);
-                foreach ($diff as $item) {
-                    [$directory, $vcs] = $item;
+                foreach ($jsonIncludes as $jsonItem) {
+                    foreach ($ideaIncludes as $ideaItem) {
+                        if ($jsonItem[0] === $ideaItem[0]) {
+                            continue 2;
+                        }
+                    }
+                    [$directory, $vcs] = $jsonItem;
                     $nodes->addChild('mapping', '', ['directory' => $directory, 'vcs' => $vcs]);
                 }
 
@@ -87,14 +89,14 @@ readonly class VersionControlDirectoryMappingsEditor implements Editor
 
         $projectRoot = $this->manager->getConfig()->getProjectRoot();
         if (!WordPress::isWordPress($projectRoot)) {
-            throw new Exception('Sorry, the project root is not a wordpress installation.');
+            throw new Exception('Sorry, the project root is not a WordPress installation, or wp-config.php is not found.');
         }
 
         $targetRoot = $this->manager->getConfig()->getTarget();
         if (UrlPathHelper::isGitRepo($targetRoot)) {
             $output[0][] = [
-                UrlPathHelper::asProjectPath($targetRoot, $projectRoot),
-                'git',
+                UrlPathHelper::asProjectPath($targetRoot, $projectRoot), // path
+                'Git',                                                   // type of vcs
             ];
         }
 
@@ -147,8 +149,8 @@ readonly class VersionControlDirectoryMappingsEditor implements Editor
         $vcs       = $this->manager->getXml($this->getDefaultFileName());
         $workspace = $this->manager->getXml($this->getWorkspaceFileName());
 
-        $mappings     = $vcs->query('/project[@version="4"]/component[@name="VcsDirectoryMappings"]/mapping');
-        $ignoredRoots = $workspace->query('/project[@version="4"]/component[@name="VcsDirectoryMappings"]/ignored-roots/path');
+        $mappings     = $vcs->query(NodeHelper::getComponentQuery($this->getComponentName()) . '/mapping');
+        $ignoredRoots = $workspace->query(NodeHelper::getComponentQuery($this->getWorkspaceComponentName()) . '/ignored-roots/path');
 
         foreach ($mappings as $mapping) {
             $output[0][] = [

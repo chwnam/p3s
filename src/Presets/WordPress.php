@@ -3,6 +3,7 @@
 namespace Chwnam\P3S\Presets;
 
 use Chwnam\P3S\Helpers\UrlPathHelper;
+use Exception;
 
 class WordPress
 {
@@ -12,6 +13,7 @@ class WordPress
      * @param string $setup
      *
      * @return string
+     * @throws Exception
      */
     public static function getServerInfo(string $setup): string
     {
@@ -23,7 +25,7 @@ class WordPress
 
         $wpCli = $matches[1];
         if (!is_executable($wpCli)) {
-            return '';
+            throw new Exception("'$wpCli' is not executable.");
         }
 
         exec("$wpCli option get siteurl", $stdout);

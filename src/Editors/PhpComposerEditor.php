@@ -46,6 +46,10 @@ readonly class PhpComposerEditor implements Editor
                     $node->setAttribute('synchronizationState', 'SYNCHRONIZE');
                 }
 
+                if (!$executablePath) {
+                    $executablePath = 'composer';
+                }
+
                 // Composer relative to projectPath
                 $composerPath = UrlPathHelper::asProjectPath(
                     $this->manager->getConfig()->getTarget() . '/composer.json',

@@ -76,16 +76,24 @@ readonly class AppearanceAndBehaviorScopesEditor implements Editor
         $patterns = [];
 
         // Include target root.
-        $patterns[] = UrlPathHelper::asProjectPath($target, $root, $relStr) . '//*';
+        $patterns[] = str_replace(
+            search: "$relStr/",
+            replace: $relStr,
+            subject: UrlPathHelper::asProjectPath($target, $root, $relStr) . '//*',
+        );
 
         // Exclude target vendor, node_modules
         foreach ([$target . '/vendor', $target . '/node_modules'] as $p) {
             if (file_exists($p)) {
-                $patterns[] = '!' . UrlPathHelper::asProjectPath($p, $root, $relStr) . '//*';
+                $patterns[] = '!' . str_replace(
+                        search: "$relStr/",
+                        replace: $relStr,
+                        subject: UrlPathHelper::asProjectPath($p, $root, $relStr) . '//*',
+                    );
             }
         }
 
-        return implode('&amp;&amp;', $patterns);
+        return implode('&&', $patterns);
     }
 
     public function getComponentName(): string
@@ -115,7 +123,7 @@ readonly class AppearanceAndBehaviorScopesEditor implements Editor
 
         $xml       = $this->manager->getXml($this->getDefaultFileName());
         $component = $xml->query(NodeHelper::getComponentQuery($this->getComponentName()));
-        $nodes     = $component->query('/scope');
+        $nodes     = $component->query('scope');
 
         foreach ($nodes as $node) {
             $output[] = [

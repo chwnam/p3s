@@ -34,7 +34,7 @@
       "exclusion": "preset:wordpress"
     },
     "versionControl": {
-      "directoryMappings": true
+      "directoryMappings": "preset:wordpress"
     },
     "runDebugConfiguration": {
       "xdebug": true

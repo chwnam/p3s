@@ -45,14 +45,21 @@ class Configuration
         }
         $this->conf['projectRoot'] = $this->getPath($this->conf['projectRoot']);
 
+        if (!$this->conf['projectRoot']) {
+            throw new Exception('`projectRoot` is empty.');
+        }
+
+        echo "ProjectRoot: " . $this->conf['projectRoot'] . "\n";
+
         $idea = $this->conf['projectRoot'] . '/.idea';
         if (
-            !$this->conf['projectRoot'] ||
             !(file_exists($idea) && is_dir($idea) && is_readable($idea) && is_writable($idea) && is_executable($idea))
         ) {
-            throw new Exception('`projectRoot` is not valid.');
+            echo '`projectRoot` does not have .idea directory. Creating now.' . PHP_EOL;
+            mkdir($idea, 0755);
         }
-        echo "ProjectRoot: " . $this->conf['projectRoot'] . "\n";
+
+        $this->prepareIdeaFiles($idea);
 
         // setup
         if (!isset($this->conf['setup']) || !is_array($this->conf['setup'])) {
@@ -67,6 +74,29 @@ class Configuration
         }
 
         return realpath($this->getTarget() . '/' . $path) ?? '';
+    }
+
+    private function prepareIdeaFiles(string $idea): void
+    {
+        $idea = realpath($idea);
+        if (!$idea) {
+            return;
+        }
+
+        $dir         = basename(dirname($idea));
+        $xmlTemplate = '<?xml version="1.0" encoding="UTF-8"?><project version="4"/>';
+        $imlTemplate = '<?xml version="1.0" encoding="UTF-8"?><module type="WEB_MODULE" version="4"/>';
+
+        foreach (["$dir.iml", 'php.xml', 'vcs.xml', 'workspace.xml'] as $file) {
+            $path = $idea . '/' . $file;
+            if (!file_exists($path)) {
+                if (str_ends_with($file, '.iml')) {
+                    file_put_contents($path, $imlTemplate);
+                } elseif (str_ends_with($file, '.xml')) {
+                    file_put_contents($path, $xmlTemplate);
+                }
+            }
+        }
     }
 
     public function getTarget(): string

@@ -4,7 +4,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 const P3S_NAME        = 'SAOPS';
 const P3S_DESCRIPTION = 'Settings Automation Of PhpStorm';
-const P3S_VERSION     = '1.0.0-beta.1';
+const P3S_VERSION     = '1.0.0-beta.2';
 
 function help(): void
 {

@@ -7,7 +7,7 @@ XDebug 지원되도록 설정하는 것은 항상 반복되는 작업
 
 `workspace.xml` 파일에 저장.
 
-`project > component[name="PhpServers"]`
+`project > component[name="RunManager"]`
 
 ---
 저장 전

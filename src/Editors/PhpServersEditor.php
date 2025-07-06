@@ -21,11 +21,6 @@ readonly class PhpServersEditor implements Editor
     {
     }
 
-    public function getDefaultFileName(): string
-    {
-        return 'workspace.xml';
-    }
-
     /**
      * @throws Exception
      */
@@ -58,6 +53,16 @@ readonly class PhpServersEditor implements Editor
         ;
     }
 
+    public function getDefaultFileName(): string
+    {
+        return 'workspace.xml';
+    }
+
+    public function getComponentName(): string
+    {
+        return 'PhpServers';
+    }
+
     public function getConfigSetup(): array
     {
         $output  = [];
@@ -78,9 +83,9 @@ readonly class PhpServersEditor implements Editor
         return array_unique(array_filter($output));
     }
 
-    public function getComponentName(): string
+    public function getDefaultConfigParam(): string
     {
-        return 'PhpServers';
+        return 'php.servers';
     }
 
     /**
@@ -99,10 +104,5 @@ readonly class PhpServersEditor implements Editor
         }
 
         return $output;
-    }
-
-    public function getDefaultConfigParam(): string
-    {
-        return 'php.servers';
     }
 }
