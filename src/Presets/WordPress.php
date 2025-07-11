@@ -1,8 +1,8 @@
 <?php
 
-namespace Chwnam\P3S\Presets;
+namespace Chwnam\Saops\Presets;
 
-use Chwnam\P3S\Helpers\UrlPathHelper;
+use Chwnam\Saops\Helpers\UrlPathHelper;
 use Exception;
 
 class WordPress

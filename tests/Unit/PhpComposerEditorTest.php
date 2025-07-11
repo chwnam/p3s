@@ -1,10 +1,10 @@
 <?php
 /** @noinspection PhpUnhandledExceptionInspection */
 
-use Chwnam\P3S\Configuration;
-use Chwnam\P3S\EditManager;
-use Chwnam\P3S\Editors\PhpComposerEditor;
-use Chwnam\P3S\Helpers\UrlPathHelper;
+use Chwnam\Saops\Configuration;
+use Chwnam\Saops\EditManager;
+use Chwnam\Saops\Editors\PhpComposerEditor;
+use Chwnam\Saops\Helpers\UrlPathHelper;
 
 it('tests ComposerEditor', function () {
     // Build up test configuration

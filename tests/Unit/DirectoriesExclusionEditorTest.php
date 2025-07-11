@@ -1,9 +1,9 @@
 <?php
 /** @noinspection PhpUnhandledExceptionInspection */
 
-use Chwnam\P3S\Configuration;
-use Chwnam\P3S\EditManager;
-use Chwnam\P3S\Editors\DirectoriesExclusionEditor;
+use Chwnam\Saops\Configuration;
+use Chwnam\Saops\EditManager;
+use Chwnam\Saops\Editors\DirectoriesExclusionEditor;
 
 it('tests DirectoriesExclusionEditor', function () {
     // Build up test configuration

@@ -1,6 +1,6 @@
 <?php
 
-use Chwnam\P3S\Presets\WordPress;
+use Chwnam\Saops\Presets\WordPress;
 
 it('tests WordPress::getServer', function () {
     $fake_wp = getTestPath('/fixtures/fake-wp-cli');

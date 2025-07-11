@@ -1,10 +1,10 @@
 <?php
 
-namespace Chwnam\P3S\Editors;
+namespace Chwnam\Saops\Editors;
 
-use Chwnam\P3S\EditManager;
-use Chwnam\P3S\Helpers\NodeHelper;
-use Chwnam\P3S\Templates\EditTemplate;
+use Chwnam\Saops\EditManager;
+use Chwnam\Saops\Helpers\NodeHelper;
+use Chwnam\Saops\Templates\EditTemplate;
 use DOMElement;
 use Exception;
 use FluidXml\FluidContext;

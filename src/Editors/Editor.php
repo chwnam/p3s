@@ -1,8 +1,8 @@
 <?php
 
-namespace Chwnam\P3S\Editors;
+namespace Chwnam\Saops\Editors;
 
-use Chwnam\P3S\EditManager;
+use Chwnam\Saops\EditManager;
 
 interface Editor
 {

@@ -1,10 +1,10 @@
 <?php
 /** @noinspection PhpUnhandledExceptionInspection */
 
-use Chwnam\P3S\Configuration;
-use Chwnam\P3S\EditManager;
-use Chwnam\P3S\Editors\DirectoriesExclusionEditor;
-use Chwnam\P3S\Editors\VersionControlDirectoryMappingsEditor;
+use Chwnam\Saops\Configuration;
+use Chwnam\Saops\EditManager;
+use Chwnam\Saops\Editors\DirectoriesExclusionEditor;
+use Chwnam\Saops\Editors\VersionControlDirectoryMappingsEditor;
 
 it('tests VersionControlDirectoryMappingsEditor', function () {
     // Build up test configuration

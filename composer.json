@@ -3,12 +3,12 @@
   "description": "PhpStorm Setup Script",
   "autoload": {
     "psr-4": {
-      "Chwnam\\P3S\\": "src/"
+      "Chwnam\\Saops\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Chwnam\\P3S\\Tests\\": "tests/"
+      "Chwnam\\Saops\\Tests\\": "tests/"
     },
     "files": [
       "tests/fixtures/common.php"

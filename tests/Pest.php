@@ -11,7 +11,7 @@
 |
 */
 
-pest()->extend(Chwnam\P3S\Tests\TestCase::class)->in('Feature');
+pest()->extend(Chwnam\Saops\Tests\TestCase::class)->in('Feature');
 
 /*
 |--------------------------------------------------------------------------

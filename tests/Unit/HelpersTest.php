@@ -1,6 +1,6 @@
 <?php
 
-use Chwnam\P3S\Helpers\UrlPathHelper;
+use Chwnam\Saops\Helpers\UrlPathHelper;
 
 it('tests UrlPathHelper::asServerInfo', function ($expected, $input) {
     expect(UrlPathHelper::asServerInfo($input))->toBe($expected);

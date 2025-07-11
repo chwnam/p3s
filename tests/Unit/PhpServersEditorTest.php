@@ -1,9 +1,9 @@
 <?php
 /** @noinspection PhpUnhandledExceptionInspection */
 
-use Chwnam\P3S\Configuration;
-use Chwnam\P3S\EditManager;
-use Chwnam\P3S\Editors\PhpServersEditor;
+use Chwnam\Saops\Configuration;
+use Chwnam\Saops\EditManager;
+use Chwnam\Saops\Editors\PhpServersEditor;
 
 it('tests PhpServersEditor', function () {
     // Build up test configuration

@@ -1,6 +1,6 @@
 <?php
 
-namespace Chwnam\P3S;
+namespace Chwnam\Saops;
 
 use Exception;
 use FluidXml\FluidXml;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Chwnam\P3S\Helpers;
+namespace Chwnam\Saops\Helpers;
 
 class UrlPathHelper
 {

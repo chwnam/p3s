@@ -1,17 +1,17 @@
 <?php
 
-namespace Chwnam\P3S;
+namespace Chwnam\Saops;
 
-use Chwnam\P3S\Editors\PhpComposerEditor;
-use Chwnam\P3S\Editors\EditorNaturalLanguagesSpellingCustomDictionariesEditor;
-use Chwnam\P3S\Editors\VersionControlDirectoryMappingsEditor;
-use Chwnam\P3S\Editors\Editor;
-use Chwnam\P3S\Editors\DirectoriesExclusionEditor;
-use Chwnam\P3S\Editors\PhpLanguageLevelEditor;
-use Chwnam\P3S\Editors\AppearanceAndBehaviorScopesEditor;
-use Chwnam\P3S\Editors\PhpServersEditor;
-use Chwnam\P3S\Editors\PhpFrameworksWordPressEditor;
-use Chwnam\P3S\Editors\RunDebugConfigurationXDebugEditor;
+use Chwnam\Saops\Editors\PhpComposerEditor;
+use Chwnam\Saops\Editors\EditorNaturalLanguagesSpellingCustomDictionariesEditor;
+use Chwnam\Saops\Editors\VersionControlDirectoryMappingsEditor;
+use Chwnam\Saops\Editors\Editor;
+use Chwnam\Saops\Editors\DirectoriesExclusionEditor;
+use Chwnam\Saops\Editors\PhpLanguageLevelEditor;
+use Chwnam\Saops\Editors\AppearanceAndBehaviorScopesEditor;
+use Chwnam\Saops\Editors\PhpServersEditor;
+use Chwnam\Saops\Editors\PhpFrameworksWordPressEditor;
+use Chwnam\Saops\Editors\RunDebugConfigurationXDebugEditor;
 use Exception;
 
 class SettingsAutomationOfPhpStorm

@@ -1,6 +1,6 @@
 <?php
 
-namespace Chwnam\P3S\Templates;
+namespace Chwnam\Saops\Templates;
 
 use Closure;
 use DOMElement;

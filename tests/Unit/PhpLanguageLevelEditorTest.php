@@ -1,9 +1,9 @@
 <?php
 /** @noinspection PhpUnhandledExceptionInspection */
 
-use Chwnam\P3S\Configuration;
-use Chwnam\P3S\EditManager;
-use Chwnam\P3S\Editors\PhpLanguageLevelEditor;
+use Chwnam\Saops\Configuration;
+use Chwnam\Saops\EditManager;
+use Chwnam\Saops\Editors\PhpLanguageLevelEditor;
 
 it('tests PhpLanguageLevelEditor', function () {
     // Build up test configuration

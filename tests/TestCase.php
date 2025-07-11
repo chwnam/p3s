@@ -1,6 +1,6 @@
 <?php
 
-namespace Chwnam\P3S\Tests;
+namespace Chwnam\Saops\Tests;
 
 use PHPUnit\Framework\TestCase as BaseTestCase;
 

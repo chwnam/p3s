@@ -4,7 +4,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 const P3S_NAME        = 'SAOPS';
 const P3S_DESCRIPTION = 'Settings Automation Of PhpStorm';
-const P3S_VERSION     = '1.0.0-beta.2';
+const P3S_VERSION     = '1.0.0-beta.3';
 
 function help(): void
 {
@@ -34,7 +34,7 @@ if (isset($opts['v'])) {
 
 try {
     $configPath = $opts['c'] ?? __DIR__ . '/config.json';
-    (new Chwnam\P3S\SettingsAutomationOfPhpStorm($configPath))->run();
+    (new Chwnam\Saops\SettingsAutomationOfPhpStorm($configPath))->run();
 } catch (Exception $e) {
     die($e->getMessage());
 }
